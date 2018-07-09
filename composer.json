@@ -1,5 +1,5 @@
 {
-    "name": "beyondit/opencart-project-template",
+    "name": "isaacqu/opencart-project-template",
     "description": "Opencart Project Template for Development",
     "license": "GPL-3.0",
     "type": "project",
@@ -7,6 +7,10 @@
         {
             "name": "stefanhuber",
             "email": "stefan.huber@beyondit.at"
+        },
+        {
+            "name": "iq",
+            "email": "isaacqu@sina.cn"
         }
     ],
     "require-dev": {
