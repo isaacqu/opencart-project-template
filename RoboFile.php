@@ -128,11 +128,15 @@ class RoboFile extends \Robo\Tasks
         }
 
         $iterator = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator("src", \RecursiveDirectoryIterator::SKIP_DOTS), \RecursiveIteratorIterator::CHILD_FIRST
+            new \RecursiveDirectoryIterator("src", \RecursiveDirectoryIterator::SKIP_DOTS),
+            \RecursiveIteratorIterator::SELF_FIRST
         );
         foreach ($iterator as $file) {
-            if ($file->isFile() && $file->isReadable()) {
-                $zip->addFile($file->getPathname(),substr($file->getPathname(),4));
+	        $pathname = str_replace("\\", "/", $file->getPathname()); //for compatible UNIX
+	        if (is_dir($file)) {
+		        $zip->addEmptyDir(substr($pathname,4));
+	        } else if ($file->isFile() && $file->isReadable()) {
+                $zip->addFile($file->getPathname(), substr($pathname,4));
             }
         }
 
